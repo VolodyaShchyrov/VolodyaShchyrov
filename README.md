@@ -1,16 +1,45 @@
-## Hi there 👋
+<h1 align="center">Hey, I'm Nikita</h1>
 
-<!--
-**MR-kartoshki/MR-kartoshki** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+<p align="center">
+  Student in Vienna
+</p>
 
-Here are some ideas to get you started:
+---
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## About me
+
+I write code, mostly Java. Sometimes things outside of school catch my interest and become a project. Still learning. Always open to collaborating on something interesting.
+
+---
+
+## Languages
+
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+
+---
+
+## GitHub Stats
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=MR-kartoshki&show_icons=true&theme=tokyonight&hide_border=true" height="165" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=MR-kartoshki&layout=compact&theme=tokyonight&hide_border=true" height="165" />
+</p>
+
+<p align="center">
+  <img src="https://streak-stats.demolab.com?user=MR-kartoshki&theme=tokyonight&hide_border=true" />
+</p>
+
+---
+
+## Contact
+
+Discord: `freddy._.fazbear`
+
+---
+
+<p align="center">
+  <img src="https://komarev.com/ghpvc/?username=MR-kartoshki&color=blue&style=flat-square" alt="Profile views" />
+</p>
