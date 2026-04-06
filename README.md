@@ -36,7 +36,8 @@ I write code, mostly Java. Sometimes things outside of school catch my interest 
 
 ## Contact
 
-Discord: `freddy._.fazbear`
+- Discord: [freddy._.fazbear](https://discord.com/users/1080867173213417503) 
+- Modrinth: [MR-Kartoshki](https://modrinth.com/user/MR-kartoshki)
 
 ---
 
