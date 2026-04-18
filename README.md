@@ -15,7 +15,7 @@
 
 <p align="center">
   <a href="https://mr-kartoshki.github.io/MR-kartoshki/">
-    <img src="https://img.shields.io/badge/OPEN%20PORTFOLIO%20WEBSITE-38BDF8?style=for-the-badge&logo=githubpages&logoColor=0B1220" height="44" />
+    <img src="https://img.shields.io/badge/OPEN%20PORTFOLIO%20WEBSITE-38BDF8?style=for-the-badge&logo=githubpages&logoColor=0B1220" height="60" />
   </a>
 </p>
 
