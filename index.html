@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MR-Kartoshki | Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="#home">MR-Kartoshki</a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="section hero">
+      <div class="container">
+        <h1>MR-Kartoshki</h1>
+        <p class="intro">
+          IT student and developer focused on practical tools and Minecraft modding.
+        </p>
+        <a id="homeGithubLink" class="button" href="#" target="_blank" rel="noopener noreferrer">Visit GitHub</a>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <h2>About</h2>
+        <p>
+          I mostly build with Java, and I also use Python and Lua when needed. I enjoy turning small ideas
+          into useful projects and learning through hands-on development.
+        </p>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="container">
+        <h2>Projects</h2>
+        <div class="controls" aria-label="Project filters">
+          <label class="control">
+            <span>Search</span>
+            <input id="searchInput" type="search" placeholder="Search repository name" autocomplete="off">
+          </label>
+
+          <label class="control">
+            <span>Language</span>
+            <select id="languageFilter">
+              <option value="all">All languages</option>
+            </select>
+          </label>
+
+          <label class="toggle">
+            <input id="hideForksToggle" type="checkbox" checked>
+            <span>Hide forks</span>
+          </label>
+        </div>
+
+        <p id="statusMessage" class="status" role="status" aria-live="polite"></p>
+        <div id="projectsGrid" class="projects-grid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <h2>Contact</h2>
+        <p>Find me on GitHub, Discord, or send me an email.</p>
+        <div class="contact-links">
+          <a id="contactGithubLink" class="button" href="#" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a class="button" href="https://discord.com/users/1080867173213417503" target="_blank" rel="noopener noreferrer">Discord</a>
+          <a class="button" href="mailto:mrkartoshki@gmail.com">Email</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
