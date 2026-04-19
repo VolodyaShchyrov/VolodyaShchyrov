@@ -11,6 +11,9 @@ const contactGithubLink = document.getElementById("contactGithubLink");
 const contactFormToggle = document.getElementById("contactFormToggle");
 const contactFormPanel = document.getElementById("contactFormPanel");
 const contactNameInput = document.getElementById("contactName");
+const contactForm = document.querySelector(".contact-form");
+const contactSubmitButton = document.getElementById("contactSubmitButton");
+const contactFormStatus = document.getElementById("contactFormStatus");
 
 const state = {
   repos: [],
@@ -19,6 +22,11 @@ const state = {
 };
 const skeletonCardCount = 6;
 const maxExpandedLanguageCount = 3;
+const messageCooldownMs = 10_000;
+const cooldownStorageKey = "contactFormLastSentAt";
+const cooldownTickMs = 250;
+
+let contactCooldownIntervalId;
 
 const updatedDateFormatter = new Intl.DateTimeFormat(undefined, {
   year: "numeric",
@@ -44,6 +52,110 @@ if (contactFormToggle && contactFormPanel) {
     contactFormPanel.setAttribute("hidden", "");
     contactFormToggle.setAttribute("aria-expanded", "false");
     contactFormToggle.textContent = "Send email";
+  });
+}
+
+function setContactFormMessage(message, type = "info") {
+  if (!contactFormStatus) {
+    return;
+  }
+
+  contactFormStatus.textContent = message;
+  contactFormStatus.classList.remove("contact-form-status--warning");
+
+  if (type === "warning") {
+    contactFormStatus.classList.add("contact-form-status--warning");
+  }
+}
+
+function formatCooldownSeconds(remainingMs) {
+  return `${Math.ceil(remainingMs / 1000)}s`;
+}
+
+function getRemainingCooldownMs() {
+  const lastSentAt = Number(localStorage.getItem(cooldownStorageKey));
+
+  if (!Number.isFinite(lastSentAt) || lastSentAt <= 0) {
+    return 0;
+  }
+
+  return Math.max(0, messageCooldownMs - (Date.now() - lastSentAt));
+}
+
+function triggerSendButtonReaction(reactionClassName) {
+  if (!contactSubmitButton) {
+    return;
+  }
+
+  contactSubmitButton.classList.remove("button--pressed", "button--blocked");
+  // Force a reflow so repeated clicks replay the animation.
+  void contactSubmitButton.offsetWidth;
+  contactSubmitButton.classList.add(reactionClassName);
+}
+
+function updateContactSubmitButton(remainingMs) {
+  if (!contactSubmitButton) {
+    return;
+  }
+
+  if (remainingMs > 0) {
+    contactSubmitButton.disabled = true;
+    contactSubmitButton.classList.add("button--cooldown");
+    contactSubmitButton.textContent = `Wait ${formatCooldownSeconds(remainingMs)}`;
+    return;
+  }
+
+  contactSubmitButton.disabled = false;
+  contactSubmitButton.classList.remove("button--cooldown");
+  contactSubmitButton.textContent = "Send message";
+}
+
+function startContactCooldown() {
+  if (contactCooldownIntervalId) {
+    window.clearInterval(contactCooldownIntervalId);
+    contactCooldownIntervalId = undefined;
+  }
+
+  const startingRemainingMs = getRemainingCooldownMs();
+  updateContactSubmitButton(startingRemainingMs);
+
+  if (startingRemainingMs <= 0) {
+    return;
+  }
+
+  contactCooldownIntervalId = window.setInterval(() => {
+    const remainingMs = getRemainingCooldownMs();
+    updateContactSubmitButton(remainingMs);
+
+    if (remainingMs <= 0) {
+      window.clearInterval(contactCooldownIntervalId);
+      contactCooldownIntervalId = undefined;
+      setContactFormMessage("");
+    }
+  }, cooldownTickMs);
+}
+
+if (contactForm && contactSubmitButton) {
+  startContactCooldown();
+
+  contactForm.addEventListener("submit", (event) => {
+    const remainingMs = getRemainingCooldownMs();
+
+    if (remainingMs > 0) {
+      event.preventDefault();
+      triggerSendButtonReaction("button--blocked");
+      setContactFormMessage(
+        `Please wait ${formatCooldownSeconds(remainingMs)} before sending another message.`,
+        "warning"
+      );
+      startContactCooldown();
+      return;
+    }
+
+    localStorage.setItem(cooldownStorageKey, String(Date.now()));
+    triggerSendButtonReaction("button--pressed");
+    setContactFormMessage("Sending your message...");
+    startContactCooldown();
   });
 }
 

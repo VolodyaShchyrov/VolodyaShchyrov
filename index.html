@@ -44,7 +44,10 @@
         <p class="intro">
           IT student and developer focused on practical tools and Minecraft modding.
         </p>
-        <a id="homeGithubLink" class="button" href="#" target="_blank" rel="noopener noreferrer">Visit GitHub</a>
+        <div class="hero-actions">
+          <a id="homeGithubLink" class="button" href="#" target="_blank" rel="noopener noreferrer">Visit GitHub</a>
+          <a class="button" href="https://buymeacoffee.com/MRkartoshki" target="_blank" rel="noopener noreferrer">Support me</a>
+        </div>
       </div>
     </section>
 
@@ -115,7 +118,8 @@
             </label>
 
             <input class="contact-honeypot" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
-            <button class="button" type="submit">Send message</button>
+            <button id="contactSubmitButton" class="button" type="submit">Send message</button>
+            <p id="contactFormStatus" class="contact-form-status" role="status" aria-live="polite"></p>
           </form>
         </div>
       </div>
