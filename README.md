@@ -1,7 +1,7 @@
 <h1 align="center">Nikita</h1>
 
 <p align="center">
-  IT student at TGM Vienna · Minecraft mod dev · Fabric & Java
+  IT student at TGM Vienna · Minecraft mod dev · Always tired
 </p>
 
 <p align="center">
@@ -15,7 +15,13 @@
 
 <p align="center">
   <a href="https://mr-kartoshki.github.io/MR-kartoshki/">
-    <img src="https://img.shields.io/badge/OPEN%20PORTFOLIO%20WEBSITE-38BDF8?style=for-the-badge&logo=githubpages&logoColor=0B1220" height="60" />
+    <img src="https://img.shields.io/badge/OPEN%20PORTFOLIO-38BDF8?style=for-the-badge&logo=githubpages&logoColor=0B1220" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://buymeacoffee.com/MRkartoshki">
+    <img src="https://img.shields.io/badge/Support%20Me-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=black" />
   </a>
 </p>
 
