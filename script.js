@@ -1,5 +1,6 @@
 const username = "MR-kartoshki";
-const endpoint = `https://api.github.com/users/${username}/repos`;
+const apiEndpoint = `https://api.github.com/users/${username}/repos`;
+const cacheEndpoint = "./data/repos-cache.json";
 
 const projectsGrid = document.getElementById("projectsGrid");
 const statusMessage = document.getElementById("statusMessage");
@@ -25,6 +26,7 @@ const maxExpandedLanguageCount = 3;
 const messageCooldownMs = 10_000;
 const cooldownStorageKey = "contactFormLastSentAt";
 const cooldownTickMs = 250;
+const cacheFreshnessMs = 10 * 60_000;
 
 let contactCooldownIntervalId;
 
@@ -403,41 +405,140 @@ function renderProjects() {
   setStatus(`Showing ${filteredRepos.length} repositories.${languageWarning}`);
 }
 
+function sortReposByUpdatedDate(repos) {
+  return repos.sort(
+    (a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
+  );
+}
+
+async function fetchCachedRepositories() {
+  const response = await fetch(cacheEndpoint, {
+    cache: "no-store",
+    headers: {
+      Accept: "application/json",
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Cache file returned status ${response.status}.`);
+  }
+
+  const payload = await response.json();
+
+  if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
+    throw new Error("Unexpected cache payload.");
+  }
+
+  if (!Array.isArray(payload.repos)) {
+    throw new Error("Unexpected cache repositories payload.");
+  }
+
+  const repoLanguages = new Map();
+
+  if (
+    payload.repo_languages &&
+    typeof payload.repo_languages === "object" &&
+    !Array.isArray(payload.repo_languages)
+  ) {
+    for (const [repoId, languages] of Object.entries(payload.repo_languages)) {
+      const numericRepoId = Number(repoId);
+
+      if (Number.isNaN(numericRepoId) || !Array.isArray(languages)) {
+        continue;
+      }
+
+      repoLanguages.set(
+        numericRepoId,
+        languages.filter((language) => typeof language === "string")
+      );
+    }
+  }
+
+  return {
+    repos: sortReposByUpdatedDate(payload.repos),
+    repoLanguages,
+    hasIncompleteLanguageData: Boolean(payload.has_incomplete_language_data),
+    generatedAtMs: Number(Date.parse(payload.generated_at)),
+  };
+}
+
+function applyCachedRepositories(cachedData) {
+  state.repos = cachedData.repos;
+  state.repoLanguages = cachedData.repoLanguages;
+  state.hasIncompleteLanguageData = cachedData.hasIncompleteLanguageData;
+  updateLanguageFilterOptions(state.repos);
+  renderProjects();
+}
+
+function isCacheStale(generatedAtMs) {
+  if (!Number.isFinite(generatedAtMs)) {
+    return true;
+  }
+
+  return Date.now() - generatedAtMs > cacheFreshnessMs;
+}
+
+async function fetchRepositoriesFromApi() {
+  const response = await fetch(apiEndpoint, {
+    headers: {
+      Accept: "application/vnd.github+json",
+    },
+  });
+
+  if (!response.ok) {
+    if (response.status === 403) {
+      throw new Error("GitHub API rate limit reached. Please try again later.");
+    }
+
+    throw new Error(`GitHub API returned status ${response.status}.`);
+  }
+
+  const repos = await response.json();
+
+  if (!Array.isArray(repos)) {
+    throw new Error("Unexpected API response.");
+  }
+
+  const sortedRepos = sortReposByUpdatedDate(repos);
+  await loadRepoLanguages(sortedRepos);
+  return sortedRepos;
+}
+
+async function refreshRepositoriesSilently() {
+  try {
+    state.repos = await fetchRepositoriesFromApi();
+    updateLanguageFilterOptions(state.repos);
+    renderProjects();
+  } catch (error) {
+    console.warn("Background repository refresh failed.", error);
+  }
+}
+
 async function fetchRepositories() {
   setStatus("Loading repositories...", "loading");
   renderLoadingSkeletons();
 
   try {
-    const response = await fetch(endpoint, {
-      headers: {
-        Accept: "application/vnd.github+json",
-      },
-    });
+    const cachedData = await fetchCachedRepositories();
+    applyCachedRepositories(cachedData);
 
-    if (!response.ok) {
-      if (response.status === 403) {
-        throw new Error("GitHub API rate limit reached. Please try again later.");
-      }
-
-      throw new Error(`GitHub API returned status ${response.status}.`);
+    if (isCacheStale(cachedData.generatedAtMs)) {
+      void refreshRepositoriesSilently();
     }
 
-    const repos = await response.json();
-
-    if (!Array.isArray(repos)) {
-      throw new Error("Unexpected API response.");
+    return;
+  } catch (cacheError) {
+    try {
+      state.repos = await fetchRepositoriesFromApi();
+      updateLanguageFilterOptions(state.repos);
+      renderProjects();
+      return;
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Unknown error.";
+      const cacheMessage =
+        cacheError instanceof Error ? cacheError.message : "Unknown cache error.";
+      setStatus(`Failed to load repositories: ${message} (cache error: ${cacheMessage})`, "error");
     }
-
-    state.repos = repos.sort(
-      (a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
-    );
-
-    await loadRepoLanguages(state.repos);
-    updateLanguageFilterOptions(state.repos);
-    renderProjects();
-  } catch (error) {
-    const message = error instanceof Error ? error.message : "Unknown error.";
-    setStatus(`Failed to load repositories: ${message}`, "error");
   }
 }
 
