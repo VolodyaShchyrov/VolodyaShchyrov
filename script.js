@@ -12,6 +12,13 @@ const contactGithubLink = document.getElementById("contactGithubLink");
 const state = {
   repos: [],
 };
+const skeletonCardCount = 6;
+
+const updatedDateFormatter = new Intl.DateTimeFormat(undefined, {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+});
 
 homeGithubLink.href = `https://github.com/${username}`;
 contactGithubLink.href = `https://github.com/${username}`;
@@ -30,12 +37,25 @@ function setStatus(message, type = "info") {
   }
 }
 
+function formatUpdatedDate(value) {
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) {
+    return "Unknown";
+  }
+
+  return updatedDateFormatter.format(date);
+}
+
 function createProjectCard(repo) {
   const card = document.createElement("article");
   card.className = "project-card";
 
   const description = repo.description ? repo.description : "No description provided.";
   const language = repo.language ? repo.language : "Not specified";
+  const stars = typeof repo.stargazers_count === "number" ? repo.stargazers_count : 0;
+  const forks = typeof repo.forks_count === "number" ? repo.forks_count : 0;
+  const lastUpdated = formatUpdatedDate(repo.updated_at);
 
   const title = document.createElement("h3");
   title.className = "project-title";
@@ -48,6 +68,17 @@ function createProjectCard(repo) {
   meta.className = "project-meta";
   meta.textContent = `Language: ${language}`;
 
+  const stats = document.createElement("div");
+  stats.className = "project-stats";
+  const statsLine = document.createElement("p");
+  statsLine.className = "project-stats-line";
+  statsLine.textContent = `Stars: ${stars} · Forks: ${forks}`;
+
+  const updatedLine = document.createElement("p");
+  updatedLine.className = "project-updated";
+  updatedLine.textContent = `Updated: ${lastUpdated}`;
+  stats.append(statsLine, updatedLine);
+
   const link = document.createElement("a");
   link.className = "button";
   link.href = repo.html_url;
@@ -55,9 +86,57 @@ function createProjectCard(repo) {
   link.rel = "noopener noreferrer";
   link.textContent = "View repository";
 
-  card.append(title, descriptionText, meta, link);
+  card.append(title, descriptionText, meta, stats, link);
 
   return card;
+}
+
+function createSkeletonCard() {
+  const card = document.createElement("article");
+  card.className = "project-card project-card--skeleton";
+  card.setAttribute("aria-hidden", "true");
+
+  const title = document.createElement("div");
+  title.className = "skeleton-line skeleton-title";
+
+  const description = document.createElement("div");
+  description.className = "skeleton-line skeleton-description";
+
+  const shortDescription = document.createElement("div");
+  shortDescription.className = "skeleton-line skeleton-description short";
+
+  const spacer = document.createElement("div");
+  spacer.className = "skeleton-spacer";
+
+  const meta = document.createElement("div");
+  meta.className = "skeleton-line skeleton-meta";
+
+  const stats = document.createElement("div");
+  stats.className = "project-stats";
+
+  const statsLine = document.createElement("div");
+  statsLine.className = "skeleton-line skeleton-stats-line";
+
+  const updatedLine = document.createElement("div");
+  updatedLine.className = "skeleton-line skeleton-updated-line";
+  stats.append(statsLine, updatedLine);
+
+  const button = document.createElement("div");
+  button.className = "skeleton-line skeleton-button";
+
+  card.append(title, description, shortDescription, spacer, meta, stats, button);
+  return card;
+}
+
+function renderLoadingSkeletons(count = skeletonCardCount) {
+  projectsGrid.innerHTML = "";
+  const fragment = document.createDocumentFragment();
+
+  for (let index = 0; index < count; index += 1) {
+    fragment.append(createSkeletonCard());
+  }
+
+  projectsGrid.append(fragment);
 }
 
 function updateLanguageFilterOptions(repos) {
@@ -123,7 +202,7 @@ function renderProjects() {
 
 async function fetchRepositories() {
   setStatus("Loading repositories...", "loading");
-  projectsGrid.innerHTML = "";
+  renderLoadingSkeletons();
 
   try {
     const response = await fetch(endpoint, {
