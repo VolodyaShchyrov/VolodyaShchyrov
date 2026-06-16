@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-16T12:23:33.510Z",
+  "generated_at": "2026-06-16T17:32:36.800Z",
   "username": "VolodyaShchyrov",
   "has_incomplete_language_data": false,
   "repos": [
@@ -7,11 +7,11 @@
       "id": 1271007871,
       "name": "JavaRPG",
       "description": "This is a project about rpg game on java",
-      "language": null,
+      "language": "Java",
       "fork": false,
       "stargazers_count": 0,
       "forks_count": 0,
-      "updated_at": "2026-06-16T08:57:49Z",
+      "updated_at": "2026-06-16T13:36:53Z",
       "html_url": "https://github.com/VolodyaShchyrov/JavaRPG",
       "languages_url": "https://api.github.com/repos/VolodyaShchyrov/JavaRPG/languages"
     },
@@ -23,7 +23,7 @@
       "fork": false,
       "stargazers_count": 0,
       "forks_count": 0,
-      "updated_at": "2026-06-16T07:08:48Z",
+      "updated_at": "2026-06-16T12:23:38Z",
       "html_url": "https://github.com/VolodyaShchyrov/VolodyaShchyrov",
       "languages_url": "https://api.github.com/repos/VolodyaShchyrov/VolodyaShchyrov/languages"
     },
@@ -109,6 +109,8 @@
       "CSS",
       "HTML"
     ],
-    "1271007871": []
+    "1271007871": [
+      "Java"
+    ]
   }
 }
