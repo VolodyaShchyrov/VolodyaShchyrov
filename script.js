@@ -1,4 +1,4 @@
-const username = "MR-kartoshki";
+const username = "VolodyaShchyrov";
 const apiEndpoint = `https://api.github.com/users/${username}/repos`;
 const cacheEndpoint = "./data/repos-cache.json";
 

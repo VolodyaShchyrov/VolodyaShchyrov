@@ -28,7 +28,7 @@ jobs:
             const fs = require("node:fs");
             const path = require("node:path");
 
-            const username = "MR-kartoshki";
+            const username = "VolodyaShchyrov";
             const repos = [];
             const perPage = 100;
 
