@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-16T22:54:06.241Z",
+  "generated_at": "2026-07-17T00:01:42.427Z",
   "username": "VolodyaShchyrov",
-  "has_incomplete_language_data": true,
+  "has_incomplete_language_data": false,
   "repos": [
     {
       "id": 1270883174,
@@ -11,7 +11,7 @@
       "fork": false,
       "stargazers_count": 0,
       "forks_count": 0,
-      "updated_at": "2026-07-16T21:51:10Z",
+      "updated_at": "2026-07-16T22:54:10Z",
       "html_url": "https://github.com/VolodyaShchyrov/VolodyaShchyrov",
       "languages_url": "https://api.github.com/repos/VolodyaShchyrov/VolodyaShchyrov/languages"
     },
@@ -105,17 +105,21 @@
       "C#"
     ],
     "952171929": [
-      "CSS"
+      "CSS",
+      "HTML"
     ],
     "1078289340": [
-      "HTML"
+      "HTML",
+      "CSS"
     ],
     "1156632906": [
       "C++"
     ],
     "1219704415": [],
     "1270883174": [
-      "JavaScript"
+      "JavaScript",
+      "CSS",
+      "HTML"
     ],
     "1271007871": [
       "Java"
