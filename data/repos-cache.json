@@ -1,8 +1,20 @@
 {
-  "generated_at": "2026-09-16T06:19:05.079Z",
+  "generated_at": "2026-09-16T11:51:55.038Z",
   "username": "VolodyaShchyrov",
   "has_incomplete_language_data": false,
   "repos": [
+    {
+      "id": 1372822374,
+      "name": "GK11_INSY",
+      "description": "GK11_INSY",
+      "language": null,
+      "fork": false,
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "updated_at": "2026-09-16T09:44:12Z",
+      "html_url": "https://github.com/VolodyaShchyrov/GK11_INSY",
+      "languages_url": "https://api.github.com/repos/VolodyaShchyrov/GK11_INSY/languages"
+    },
     {
       "id": 1270883174,
       "name": "VolodyaShchyrov",
@@ -11,7 +23,7 @@
       "fork": false,
       "stargazers_count": 0,
       "forks_count": 0,
-      "updated_at": "2026-09-16T01:20:01Z",
+      "updated_at": "2026-09-16T06:19:10Z",
       "html_url": "https://github.com/VolodyaShchyrov/VolodyaShchyrov",
       "languages_url": "https://api.github.com/repos/VolodyaShchyrov/VolodyaShchyrov/languages"
     },
@@ -124,6 +136,7 @@
     "1271007871": [
       "Java"
     ],
-    "1280327039": []
+    "1280327039": [],
+    "1372822374": []
   }
 }
