@@ -1,8 +1,20 @@
 {
-  "generated_at": "2026-09-17T10:23:19.809Z",
+  "generated_at": "2026-09-17T15:11:07.978Z",
   "username": "VolodyaShchyrov",
   "has_incomplete_language_data": false,
   "repos": [
+    {
+      "id": 1374625991,
+      "name": "ITP_Projektantrag",
+      "description": "Das ist ein Repo für itp-projektantrag",
+      "language": null,
+      "fork": false,
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "updated_at": "2026-09-17T15:10:39Z",
+      "html_url": "https://github.com/VolodyaShchyrov/ITP_Projektantrag",
+      "languages_url": "https://api.github.com/repos/VolodyaShchyrov/ITP_Projektantrag/languages"
+    },
     {
       "id": 1270883174,
       "name": "VolodyaShchyrov",
@@ -11,7 +23,7 @@
       "fork": false,
       "stargazers_count": 0,
       "forks_count": 0,
-      "updated_at": "2026-09-17T05:30:33Z",
+      "updated_at": "2026-09-17T10:23:25Z",
       "html_url": "https://github.com/VolodyaShchyrov/VolodyaShchyrov",
       "languages_url": "https://api.github.com/repos/VolodyaShchyrov/VolodyaShchyrov/languages"
     },
@@ -137,6 +149,7 @@
       "Java"
     ],
     "1280327039": [],
-    "1372822374": []
+    "1372822374": [],
+    "1374625991": []
   }
 }
