@@ -1,8 +1,20 @@
 {
-  "generated_at": "2026-10-11T19:05:13.714Z",
+  "generated_at": "2026-10-11T22:52:23.566Z",
   "username": "VolodyaShchyrov",
   "has_incomplete_language_data": false,
   "repos": [
+    {
+      "id": 1372822374,
+      "name": "INSY_Projekts",
+      "description": "GK11_INSY",
+      "language": null,
+      "fork": false,
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "updated_at": "2026-10-11T19:20:36Z",
+      "html_url": "https://github.com/VolodyaShchyrov/INSY_Projekts",
+      "languages_url": "https://api.github.com/repos/VolodyaShchyrov/INSY_Projekts/languages"
+    },
     {
       "id": 1270883174,
       "name": "VolodyaShchyrov",
@@ -11,7 +23,7 @@
       "fork": false,
       "stargazers_count": 0,
       "forks_count": 0,
-      "updated_at": "2026-10-11T14:20:41Z",
+      "updated_at": "2026-10-11T19:05:18Z",
       "html_url": "https://github.com/VolodyaShchyrov/VolodyaShchyrov",
       "languages_url": "https://api.github.com/repos/VolodyaShchyrov/VolodyaShchyrov/languages"
     },
@@ -62,18 +74,6 @@
       "updated_at": "2026-10-01T12:46:16Z",
       "html_url": "https://github.com/VolodyaShchyrov/Einfaches_Spiel",
       "languages_url": "https://api.github.com/repos/VolodyaShchyrov/Einfaches_Spiel/languages"
-    },
-    {
-      "id": 1372822374,
-      "name": "INSY_Projekts",
-      "description": "GK11_INSY",
-      "language": null,
-      "fork": false,
-      "stargazers_count": 0,
-      "forks_count": 0,
-      "updated_at": "2026-09-25T10:39:43Z",
-      "html_url": "https://github.com/VolodyaShchyrov/INSY_Projekts",
-      "languages_url": "https://api.github.com/repos/VolodyaShchyrov/INSY_Projekts/languages"
     },
     {
       "id": 1387266417,
