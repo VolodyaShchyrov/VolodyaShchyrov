@@ -1,20 +1,8 @@
 {
-  "generated_at": "2026-10-23T17:02:08.198Z",
+  "generated_at": "2026-10-23T20:23:18.235Z",
   "username": "VolodyaShchyrov",
   "has_incomplete_language_data": false,
   "repos": [
-    {
-      "id": 1431023038,
-      "name": "Contest",
-      "description": null,
-      "language": "Python",
-      "fork": false,
-      "stargazers_count": 0,
-      "forks_count": 0,
-      "updated_at": "2026-10-23T12:53:08Z",
-      "html_url": "https://github.com/VolodyaShchyrov/Contest",
-      "languages_url": "https://api.github.com/repos/VolodyaShchyrov/Contest/languages"
-    },
     {
       "id": 1270883174,
       "name": "VolodyaShchyrov",
@@ -23,7 +11,7 @@
       "fork": false,
       "stargazers_count": 0,
       "forks_count": 0,
-      "updated_at": "2026-10-23T12:04:26Z",
+      "updated_at": "2026-10-23T17:02:14Z",
       "html_url": "https://github.com/VolodyaShchyrov/VolodyaShchyrov",
       "languages_url": "https://api.github.com/repos/VolodyaShchyrov/VolodyaShchyrov/languages"
     },
@@ -245,10 +233,6 @@
       "Makefile"
     ],
     "1411747579": [],
-    "1420810139": [],
-    "1431023038": [
-      "Python",
-      "Shell"
-    ]
+    "1420810139": []
   }
 }
